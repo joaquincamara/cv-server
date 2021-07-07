@@ -26,6 +26,8 @@ func main() {
 	router.Use(middleware.Recoverer)
 
 	router.Post("/devTech", devTechHandler.Post)
+	router.Get("/devTech", devTechHandler.GetAll)
+	router.Delete("/devTech", devTechHandler.Delete)
 
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
