@@ -1,7 +1,7 @@
 package devTechs
 
 type Repository interface {
-	//	FindAll() ([]*DevTech, error)
+	FindAll() ([]*DevTech, error)
 	Add(devTech *DevTech) error
-	Delete(devTech *DevTech) error
+	Delete(id int) error
 }

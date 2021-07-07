@@ -1,9 +1,9 @@
 package devTechs
 
 type Service interface {
-	//FindAll() ([]*DevTech, error)
+	FindAll() ([]*DevTech, error)
 	Add(devTech *DevTech) error
-	Delete(devTech *DevTech) error
+	Delete(id int) error
 }
 
 type service struct {
@@ -18,10 +18,10 @@ func (s *service) Add(devTech *DevTech) error {
 	return s.DevTechRepo.Add(devTech)
 }
 
-/*func (s *service) FindAll() ([]*DevTech, error) {
+func (s *service) FindAll() ([]*DevTech, error) {
 	return s.DevTechRepo.FindAll()
-} */
+}
 
-func (s *service) Delete(devTech *DevTech) error {
-	return s.DevTechRepo.Delete(devTech)
+func (s *service) Delete(id int) error {
+	return s.DevTechRepo.Delete(id)
 }
