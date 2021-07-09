@@ -14,7 +14,7 @@ import (
 func main() {
 
 	dbPool, _ := postgres.InitPoolConnection()
-
+	//
 	devTechRepo := postgres.NewDevTechsRepository(dbPool)
 	devTechService := devTechs.NewDevTechService(devTechRepo)
 	devTechHandler := api.NewDevTechHandler(devTechService)
@@ -28,6 +28,7 @@ func main() {
 	router.Post("/devTech", devTechHandler.Post)
 	router.Get("/devTech", devTechHandler.GetAll)
 	router.Delete("/devTech", devTechHandler.Delete)
+	router.Put("/devTech", devTechHandler.Put)
 
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
