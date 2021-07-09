@@ -6,6 +6,7 @@ require (
 	github.com/cosmtrek/air v1.27.3 // indirect
 	github.com/creack/pty v1.1.13 // indirect
 	github.com/fatih/color v1.12.0 // indirect
+	github.com/georgysavva/scany v0.2.9 // indirect
 	github.com/go-chi/chi v1.5.4 // indirect
 	github.com/jackc/pgx/v4 v4.11.0 // indirect
 	github.com/joho/godotenv v1.3.0 // indirect

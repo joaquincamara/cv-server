@@ -4,6 +4,7 @@ type Service interface {
 	FindAll() ([]*DevTech, error)
 	Add(devTech *DevTech) error
 	Delete(id int) error
+	Update(devTech *DevTech) error
 }
 
 type service struct {
@@ -24,4 +25,7 @@ func (s *service) FindAll() ([]*DevTech, error) {
 
 func (s *service) Delete(id int) error {
 	return s.DevTechRepo.Delete(id)
+}
+func (s *service) Update(devTech *DevTech) error {
+	return s.DevTechRepo.Update(devTech)
 }

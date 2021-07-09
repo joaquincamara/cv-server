@@ -11,6 +11,7 @@ type IDevTechHandler interface {
 	Post(http.ResponseWriter, *http.Request)
 	GetAll(http.ResponseWriter, *http.Request)
 	Delete(http.ResponseWriter, *http.Request)
+	Put(http.ResponseWriter, *http.Request)
 }
 
 type handler struct {
@@ -74,4 +75,25 @@ func (h *handler) GetAll(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	json.NewEncoder(w).Encode(&res)
+}
+
+func (h *handler) Put(w http.ResponseWriter, r *http.Request) {
+
+	p := &devTechs.DevTech{}
+	err := json.NewDecoder(r.Body).Decode(&p)
+
+	if err != nil {
+		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+		return
+	}
+	defer r.Body.Close()
+
+	err = h.devTechService.Update(p)
+
+	if err != nil {
+		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+		return
+	}
+	json.NewEncoder(w).Encode(&p)
+
 }

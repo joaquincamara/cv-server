@@ -1,4 +1,4 @@
-package aboutme
+package aboutMe
 
 type AboutMe struct {
 	Title string `json:"Title"`

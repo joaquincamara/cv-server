@@ -1,10 +1,10 @@
-package aboutme
+package aboutMe
 
 type Service interface {
 	Add(aboutMe *AboutMe) error
 	FindAll() ([]*AboutMe, error)
-	Update(aboutMe *AboutMe) error
-	Delete(aboutMe *AboutMe) error
+	//Update(aboutMe *AboutMe) error
+	Delete(id int) error
 }
 
 type service struct {
@@ -23,10 +23,10 @@ func (s *service) FindAll() ([]*AboutMe, error) {
 	return s.aboutMeRepo.FindAll()
 }
 
-func (s *service) Update(aboutMe *AboutMe) error {
+/*func (s *service) Update(aboutMe *AboutMe) error {
 	return s.aboutMeRepo.Update(aboutMe)
-}
+} */
 
-func (s *service) Delete(aboutMe *AboutMe) error {
-	return s.aboutMeRepo.Delete(aboutMe)
+func (s *service) Delete(id int) error {
+	return s.aboutMeRepo.Delete(id)
 }
