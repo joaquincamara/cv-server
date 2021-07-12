@@ -14,7 +14,7 @@ import (
 func main() {
 
 	dbPool, _ := postgres.InitPoolConnection()
-	//
+
 	devTechRepo := postgres.NewDevTechsRepository(dbPool)
 	devTechService := devTechs.NewDevTechService(devTechRepo)
 	devTechHandler := api.NewDevTechHandler(devTechService)
