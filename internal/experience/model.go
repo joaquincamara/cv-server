@@ -1,6 +1,7 @@
 package experience
 
 type Experience struct {
-	JobTitle string `json:"JobTitle"`
+	Id       int    `json:"Id,omitempty"`
+	Jobtitle string `json:"JobTitle"`
 	Date     string `json:"Date"`
 }

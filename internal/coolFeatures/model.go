@@ -1,4 +1,4 @@
-package coolfeatures
+package coolFeatures
 
 type Coolfeatures struct {
 	Id      int    `json:"Id,omitempty"`

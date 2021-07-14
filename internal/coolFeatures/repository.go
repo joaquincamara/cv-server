@@ -1,4 +1,4 @@
-package coolfeatures
+package coolFeatures
 
 type Repository interface {
 	FindAll() ([]*Coolfeatures, error)

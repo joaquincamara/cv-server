@@ -1,4 +1,4 @@
-package coolfeatures
+package coolFeatures
 
 type Service interface {
 	FindAll() ([]*Coolfeatures, error)
