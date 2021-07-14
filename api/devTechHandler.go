@@ -14,15 +14,15 @@ type IDevTechHandler interface {
 	Put(http.ResponseWriter, *http.Request)
 }
 
-type handler struct {
+type devTechHandler struct {
 	devTechService devTechs.Service
 }
 
 func NewDevTechHandler(devTechService devTechs.Service) IDevTechHandler {
-	return &handler{devTechService: devTechService}
+	return &devTechHandler{devTechService: devTechService}
 }
 
-func (h *handler) Post(w http.ResponseWriter, r *http.Request) {
+func (h *devTechHandler) Post(w http.ResponseWriter, r *http.Request) {
 	p := &devTechs.DevTech{}
 	err := json.NewDecoder(r.Body).Decode(&p)
 
@@ -41,7 +41,7 @@ func (h *handler) Post(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(&p)
 }
 
-func (h *handler) Delete(w http.ResponseWriter, r *http.Request) {
+func (h *devTechHandler) Delete(w http.ResponseWriter, r *http.Request) {
 	type id struct {
 		Id int
 	}
@@ -64,7 +64,7 @@ func (h *handler) Delete(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(devTechId)
 }
 
-func (h *handler) GetAll(w http.ResponseWriter, r *http.Request) {
+func (h *devTechHandler) GetAll(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
 
@@ -77,7 +77,7 @@ func (h *handler) GetAll(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(&res)
 }
 
-func (h *handler) Put(w http.ResponseWriter, r *http.Request) {
+func (h *devTechHandler) Put(w http.ResponseWriter, r *http.Request) {
 
 	p := &devTechs.DevTech{}
 	err := json.NewDecoder(r.Body).Decode(&p)
