@@ -1,0 +1,39 @@
+version: '3.7'
+services:
+  database:
+    image: postgres:13.1
+    restart: always
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=Joaquinc1
+      - POSTGRES_DB=curriculum
+    ports:
+      - '5432:5432'
+    networks:
+      - default
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file: .env
+    depends_on:
+      - database
+    networks:
+      - default
+    ports:
+      - '8080:8080'
+    restart: on-failure
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin_container
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+    depends_on:
+      - database
+    ports:
+      - '5050:80'
+    networks:
+      - default
+    restart: unless-stopped

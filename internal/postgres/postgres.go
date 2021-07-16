@@ -16,12 +16,13 @@ func InitPoolConnection() (*pgxpool.Pool, error) {
 	password := getEnvs("DATABASE_PASSWORD")
 	dbname := getEnvs("DATABASE_DBNAME")
 	port := getEnvs("DATABASE_PORT")
-
-	connectionString := fmt.Sprintf("user=%s password=%s dbname=%s port=%s sslmode=disable", user, password, dbname, port)
+	host := getEnvs("DATABASE_HOST")
+	connectionString := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable", host, user, password, dbname, port)
 	dbpool, err := pgxpool.Connect(context.Background(), connectionString)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
+		log.Println(user, password, dbname, port, host)
 		os.Exit(1)
 	}
 
