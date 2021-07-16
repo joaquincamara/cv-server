@@ -30,6 +30,4 @@ EXPOSE 8080
 # to the docker command on the command line.
 #ENV HTTP_PORT=8081
 
-# Run
-#CMD [ "/Users/jcamara/Documents/projects/go/cv-server/main" ]
 CMD ["./main"]
