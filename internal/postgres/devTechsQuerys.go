@@ -53,7 +53,7 @@ func (d *devTechsRepository) FindAll() ([]*devTechs.DevTech, error) {
 
 func (d *devTechsRepository) Update(devTech *devTechs.DevTech) error {
 	log.Println(devTech)
-	sqlStatement := `UPDATE devTech SET name=($1), rank=($2)  WHERE id=($3)`
+	sqlStatement := `UPDATE devtech SET name=($1), rank=($2)  WHERE id=($3)`
 	_, err := d.Pool.Exec(context.Background(), sqlStatement, devTech.Name, devTech.Rank, devTech.Id)
 
 	if err != nil {
