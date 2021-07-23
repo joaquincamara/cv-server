@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
@@ -18,6 +19,7 @@ import (
 func main() {
 	//
 	dbPool, _ := postgres.InitPoolConnection()
+	port := os.Getenv("PORT")
 
 	aboutMeRepo := postgres.NewAboutMeRepository(dbPool)
 	aboutMeService := aboutMe.NewAboutMeService(aboutMeRepo)
@@ -70,5 +72,5 @@ func main() {
 	router.Delete("/personalprojects", personalProjectsHandler.Delete)
 	router.Put("/personalprojects", personalProjectsHandler.Put)
 
-	log.Fatal(http.ListenAndServe(":8080", router))
+	log.Fatal(http.ListenAndServe(":"+port, router))
 }
