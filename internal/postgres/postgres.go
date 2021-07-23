@@ -3,26 +3,24 @@ package postgres
 import (
 	"context"
 	"fmt"
-	"log"
 	"os"
 
 	"github.com/jackc/pgx/v4/pgxpool"
-	"github.com/joho/godotenv"
 )
 
 func InitPoolConnection() (*pgxpool.Pool, error) {
 
-	user := getEnvs("DATABASE_USER")
-	password := getEnvs("DATABASE_PASSWORD")
-	dbname := getEnvs("DATABASE_DBNAME")
-	port := getEnvs("DATABASE_PORT")
-	host := getEnvs("DATABASE_HOST")
-	connectionString := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable", host, user, password, dbname, port)
-	dbpool, err := pgxpool.Connect(context.Background(), connectionString)
+	//user := getEnvs("DATABASE_USER")
+	//	password := getEnvs("DATABASE_PASSWORD")
+	//dbname := getEnvs("DATABASE_DBNAME")
+	//port := getEnvs("DATABASE_PORT")
+	//host := getEnvs("DATABASE_HOST")
+	//connectionString := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable", host, user, password, dbname, port)
+	dbpool, err := pgxpool.Connect(context.Background(), "postgres://zucrqvwk:b0EDhSDeZcQS9KAiXfHLR-G8tKt_vL9r@batyr.db.elephantsql.com/zucrqvwk")
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
-		log.Println(user, password, dbname, port, host)
+		//	log.Println(user, password, dbname, port, host)
 		os.Exit(1)
 	}
 
@@ -30,7 +28,7 @@ func InitPoolConnection() (*pgxpool.Pool, error) {
 
 }
 
-func getEnvs(key string) string {
+/*func getEnvs(key string) string {
 	err := godotenv.Load(".env")
 
 	if err != nil {
@@ -38,4 +36,4 @@ func getEnvs(key string) string {
 	}
 
 	return os.Getenv(key)
-}
+}*/
