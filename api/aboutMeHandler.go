@@ -42,6 +42,7 @@ func (h *aboutMeHandler) Post(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h *aboutMeHandler) Delete(w http.ResponseWriter, r *http.Request) {
+
 	type id struct {
 		Id int
 	}
@@ -67,6 +68,7 @@ func (h *aboutMeHandler) Delete(w http.ResponseWriter, r *http.Request) {
 func (h *aboutMeHandler) GetAll(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 
 	res, err := h.aboutMeService.FindAll()
 

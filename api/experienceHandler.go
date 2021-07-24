@@ -67,6 +67,7 @@ func (e *experienceHandler) Delete(w http.ResponseWriter, r *http.Request) {
 func (e *experienceHandler) GetAll(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 
 	res, err := e.experienceService.FindAll()
 
