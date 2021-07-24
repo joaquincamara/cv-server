@@ -3,9 +3,11 @@ package postgres
 import (
 	"context"
 	"fmt"
+	"log"
 	"os"
 
 	"github.com/jackc/pgx/v4/pgxpool"
+	"github.com/joho/godotenv"
 )
 
 func InitPoolConnection() (*pgxpool.Pool, error) {
@@ -28,7 +30,7 @@ func InitPoolConnection() (*pgxpool.Pool, error) {
 
 }
 
-/*func getEnvs(key string) string {
+func GetEnvs(key string) string {
 	err := godotenv.Load(".env")
 
 	if err != nil {
@@ -36,4 +38,4 @@ func InitPoolConnection() (*pgxpool.Pool, error) {
 	}
 
 	return os.Getenv(key)
-}*/
+}

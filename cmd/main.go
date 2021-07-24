@@ -17,9 +17,13 @@ import (
 )
 
 func main() {
-	//
+
 	dbPool, _ := postgres.InitPoolConnection()
 	port := os.Getenv("PORT")
+
+	if len(port) == 0 {
+		port = postgres.GetEnvs("SERVER_PORT")
+	}
 
 	aboutMeRepo := postgres.NewAboutMeRepository(dbPool)
 	aboutMeService := aboutMe.NewAboutMeService(aboutMeRepo)
